@@ -86,7 +86,7 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to="/admin/index" />
+          {/* <Redirect from="*" to="/admin/index" /> */}
         </Switch>
         <Container fluid>
           <AdminFooter />
