@@ -10,6 +10,8 @@ import Logo from 'assets/img/brand/white.png'
 
 // import { useAuth } from "../contexts/AuthContext";
 import routes from "routes.js";
+import Login from "views/Login";
+import Register from "views/Register";
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
@@ -26,13 +28,12 @@ const Admin = (props) => {
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "admin") {
-        return (
-          <Route
-            path={prop.root + prop.path}
-            render={() => <prop.component {...props} />}
-            key={key}
-          />
-        );
+        return <Route
+          path={prop.root + prop.path}
+          render={() => <prop.component {...props} />}
+          key={key}
+        />
+
       } else if (prop.layout === "general") {
         return (
           <Route
@@ -41,8 +42,6 @@ const Admin = (props) => {
             key={key}
           />
         );
-      } else {
-        return null;
       }
     });
   };
@@ -53,7 +52,7 @@ const Admin = (props) => {
         if (
           props.location.pathname.indexOf(
             routes[i].layout +
-              routes[i].path.slice(0, routes[i].path.indexOf(":"))
+            routes[i].path.slice(0, routes[i].path.indexOf(":"))
           ) !== -1
         ) {
           return routes[i].name;
@@ -86,12 +85,13 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          {/* <Redirect from="*" to="/admin/index" /> */}
+          <Redirect from="*" to="/admin/index" />
         </Switch>
-        <Container fluid>
-          <AdminFooter />
-        </Container>
+
       </div>
+      <Container fluid>
+        <AdminFooter />
+      </Container>
     </>
   );
 };

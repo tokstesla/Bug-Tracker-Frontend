@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import MainLayout from "layouts/Main.js";
 import AuthLayout from "layouts/Auth.js";
-// import './index.css'
+import Login from "views/Login";
+import './index.css'
+import Register from "views/Register";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [authLevel, setAuthLevel] = useState("");
 
-  let token = localStorage.getItem("token");
+  localStorage.setItem('auth-token', '123456') //REMOVE THIS FOR  AUTHORIZATION
+  let token = localStorage.getItem("auth-token");
 
   useEffect(() => {
     if (token == null) {
-      setIsAuthenticated(true);
+      setIsAuthenticated(false);
     }
   }, [token]);
 
@@ -23,42 +26,18 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        
-        {/* <Route
-          path="/auth"
-          render={(props) => {
-            if (!isAuthenticated) {
-              return (
-                <AuthLayout
-                  {...props}
-                  setAuth={setAuth}
-                  setAuthLevel={setAuthLevel}
-                />
-              );
-            }
-          }}
-        /> */}
+        <Route path="/auth/login">
+          <Login />
+        </Route>
+
+        <Route path="/auth/register">
+          <Register />
+        </Route>
 
         <Route
           path="/"
           render={(props) =>
-            // isAuthenticated && token !== null  ? (
-              <MainLayout
-                {...props}
-                setAuth={setAuth}
-                authLevel={authLevel}
-                setAuthLevel={setAuthLevel}
-              />
-            // ) : (
-            //   <Redirect to="/auth" />
-            // )
-          }
-        />
-
-        {/* <Route
-          path="/"
-          render={(props) =>
-            isAuthenticated && token !== null  ? (
+            isAuthenticated && token !== null ? (
               <MainLayout
                 {...props}
                 setAuth={setAuth}
@@ -66,10 +45,10 @@ const App = () => {
                 setAuthLevel={setAuthLevel}
               />
             ) : (
-              <Redirect to="/auth" />
+              <Redirect to="/auth/login" />
             )
           }
-        /> */}
+        />
 
         <Route path="*">
           <h1>404 No page found</h1>

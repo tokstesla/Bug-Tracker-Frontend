@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from "react";
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import { NavLink as NavLinkRRD, Link, useLocation } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
 
@@ -99,6 +99,7 @@ const AdminSidebar = (props) => {
     localStorage.removeItem("auth");
     props.setAuth(false);
     props.setAuthLevel("");
+    location.assign('/auth/login')
   };
 
   const { bgColor, routes, logo } = props;
