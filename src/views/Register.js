@@ -19,8 +19,11 @@ import {
   Col,
 } from "reactstrap";
 import API from "utils/API";
+import { useHistory } from "react-router-dom";
 
 const Register = (props) => {
+
+  const history = useHistory()
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -42,7 +45,7 @@ const Register = (props) => {
 
     //user authority defaults to developer
     API.addUser({ ...values, userAuth: "developer" });
-    props.history.push("/login");
+    history.push("/login");
   }
 
   return (

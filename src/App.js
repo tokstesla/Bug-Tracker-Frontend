@@ -7,7 +7,7 @@ import './index.css'
 import Register from "views/Register";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authLevel, setAuthLevel] = useState("");
 
   localStorage.setItem('auth-token', '123456') //REMOVE THIS FOR  AUTHORIZATION
