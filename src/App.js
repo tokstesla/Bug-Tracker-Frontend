@@ -37,16 +37,22 @@ const App = () => {
         <Route
           path="/"
           render={(props) =>
-            isAuthenticated && token !== null ? (
-              <MainLayout
+            <MainLayout
                 {...props}
                 setAuth={setAuth}
                 authLevel={authLevel}
                 setAuthLevel={setAuthLevel}
               />
-            ) : (
-              <Redirect to="/auth/login" />
-            )
+            // isAuthenticated && token !== null ? (
+            //   <MainLayout
+            //     {...props}
+            //     setAuth={setAuth}
+            //     authLevel={authLevel}
+            //     setAuthLevel={setAuthLevel}
+            //   />
+            // ) : (
+            //   <Redirect to="/auth/login" />
+            // )
           }
         />
 
