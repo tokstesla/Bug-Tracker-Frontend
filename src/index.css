@@ -4,6 +4,22 @@ img {
   object-fit: cover; */
 }
 
-.login-container, .register-container {
+.login-container,
+.register-container {
   height: 100vh;
+}
+
+#Login_Main_Container .con-img {
+  width: 200px;
+  margin: 0 auto;
+}
+
+#Register_Main_Container .bg-transparent.justify-content-between {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+#Register_Main_Container .con-img {
+  width: 200px;
+  /* margin: 0 auto; */
 }

@@ -60,9 +60,13 @@ const Login = (props) => {
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-center login-container">
+      <div className="d-flex align-items-center justify-content-center login-container" id="Login_Main_Container">
         <Col lg="5" md="7">
           <Card className="bg-secondary shadow border-0">
+
+            <div className="con-img pt-4">
+              <img src="https://www.interswitchgroup.com/assets/images/home/interswitch_logo.svg" alt="" />
+            </div>
             <CardBody className="px-lg-5 py-lg-5">
               <Form role="form" onSubmit={handleSubmit}>
                 <FormGroup className="mb-3">

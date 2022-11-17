@@ -50,10 +50,13 @@ const Register = (props) => {
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-center register-container">
+      <div className="d-flex align-items-center justify-content-center register-container" id="Register_Main_Container">
         <Col lg="6" md="8">
           <Card className="bg-secondary shadow border-0">
-            <CardHeader className="bg-transparent">
+            <CardHeader className="bg-transparent d-flex align-items-center justify-content-between">
+              <div className="con-img">
+                <img src="https://www.interswitchgroup.com/assets/images/home/interswitch_logo.svg" alt="" />
+              </div>
               <div className="text-muted text-center mt-2 mb-2">
                 <h2 className="text-muted text-center mt-2 mb-2">Sign up</h2>
               </div>
