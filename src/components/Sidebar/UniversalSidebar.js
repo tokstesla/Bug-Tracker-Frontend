@@ -95,10 +95,8 @@ const AdminSidebar = (props) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("auth");
+    localStorage.removeItem("auth-token");
     props.setAuth(false);
-    props.setAuthLevel("");
     location.assign('/auth/login')
   };
 

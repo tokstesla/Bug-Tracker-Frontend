@@ -1,11 +1,9 @@
 import Index from "views/Index";
-import Register from "views/Register.js";
-import Login from "views/Login.js";
 import Administration from "views/Administration";
 import Tickets from "views/Tickets";
 import Project from "views/Project";
 
-var routes = [
+const routes = [
   {
     path: "/index",
     name: "Dashboard",
@@ -50,22 +48,6 @@ var routes = [
     layout: "admin",
     root: "/admin",
     display: true,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "auth",
-    root: "/auth",
-  },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    component: Register,
-    layout: "auth",
-    root: "/auth",
   },
   {
     path: "/project/:id",

@@ -12,7 +12,8 @@ import ProjectTicketsTable from "../components/Tables/ProjectTicketsTable";
 
 import API from "../utils/API";
 
-const Project = () => {
+const Project = (props) => {
+  console.log('value of user role', props.authLevel)
   const projectId = useParams().id;
 
   const [projectData, setProjectData] = useState({});

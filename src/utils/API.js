@@ -10,7 +10,7 @@ const API = {
   getProjects: function () {
     return fetch("/api/projects", {
       headers: {
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     }).then((res) => res.json());
   },
@@ -22,7 +22,7 @@ const API = {
     return axios.get("/api/projects/" + id, {
       signal,
       headers: {
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -33,7 +33,7 @@ const API = {
     return fetch(`/api/userProjects/${projectId}`, {
       signal,
       headers: {
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     }).then((res) => res.json());
   },
@@ -50,7 +50,7 @@ const API = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(projectData),
     }).then((res) => res.json());
@@ -60,7 +60,7 @@ const API = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(projectData),
     });
@@ -73,7 +73,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -96,7 +96,7 @@ const API = {
       signal,
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     }).then((res) => res.json());
   },
@@ -113,7 +113,7 @@ const API = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(payload),
     }).then((res) => res.json());
@@ -123,7 +123,7 @@ const API = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(payload),
     }).then((res) => res.json());
@@ -133,7 +133,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -142,7 +142,7 @@ const API = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(devId),
     }).then((res) => res.json());
@@ -152,7 +152,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -178,7 +178,7 @@ const API = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(userId),
     });
@@ -188,7 +188,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -197,7 +197,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -221,7 +221,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -243,7 +243,7 @@ const API = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -252,7 +252,7 @@ const API = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(comment),
     });
@@ -262,7 +262,7 @@ const API = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
     });
   },
@@ -271,7 +271,7 @@ const API = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(payload),
     }).then((res) => res.json());

@@ -38,12 +38,10 @@ const Register = (props) => {
     registerValidation
   );
 
-
   async function submit() {
     try {
-      const response = await API.addUser(values);
+      await API.addUser(values);
       history.push("/auth/login");
-
     } catch (error) {
       throw new Error(error);
     }

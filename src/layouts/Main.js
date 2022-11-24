@@ -12,6 +12,7 @@ import Logo from 'assets/img/brand/white.png'
 import routes from "routes.js";
 
 const Admin = (props) => {
+  console.log('value of all props', props)
   const mainContent = React.useRef(null);
   const location = useLocation();
 
@@ -23,14 +24,14 @@ const Admin = (props) => {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const getRoutes = (routes) => {
+  function getRoutes(routes) {
     return routes.map((prop, key) => {
       if (prop.layout === "admin") {
-        return <Route
+        return (<Route
           path={prop.root + prop.path}
           render={() => <prop.component {...props} />}
           key={key}
-        />
+        />)
 
       } else if (prop.layout === "general") {
         return (

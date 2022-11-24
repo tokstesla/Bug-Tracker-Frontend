@@ -77,8 +77,8 @@ const ProjectsTable = () => {
       if (selectedProjectId) {
         try {
           const [projectData, projectTeam] = await Promise.all([
-            API.getProject(selectedProjectId),
-            API.getProjectUsers(selectedProjectId),
+            // API.getProject(selectedProjectId),
+            // API.getProjectUsers(selectedProjectId),
           ]);
 
           if (isRendered === true) {
@@ -134,10 +134,10 @@ const ProjectsTable = () => {
 
     setTotalProjects(computedProjects.length);
 
-    return computedProjects.slice(
-      (currentProjectPage - 1) * projectsPerPage,
-      (currentProjectPage - 1) * projectsPerPage + projectsPerPage
-    );
+    // return computedProjects.slice(
+    //   (currentProjectPage - 1) * projectsPerPage,
+    //   (currentProjectPage - 1) * projectsPerPage + projectsPerPage
+    // );
   }, [projects, currentProjectPage]);
 
   // const filteredProjectData = (rows) => {
@@ -198,7 +198,7 @@ const ProjectsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {projectData.map((project) => {
+              {/* {projectData.map((project) => {
                 return (
                   <tr key={project.id}>
                     <th scope="row">
@@ -253,7 +253,7 @@ const ProjectsTable = () => {
                     </td>
                   </tr>
                 );
-              })}
+              })} */}
               <Modal
                 isOpen={isEditProjectOpen && selectedProjectData !== null}
                 onClose={toggleEditProject}

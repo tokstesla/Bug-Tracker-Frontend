@@ -40,12 +40,13 @@ const Login = (props) => {
       localStorage.setItem("auth-token", accessToken);
       const { role, user_id } = API.getPayload();
       props.setAuth(true);
-      props.setAuthStatus({ role, user_id })
+      props.setAuthPayload({ role, user_id })
+      props.setAuthLevel(role)
 
       if (role === "ADMIN") {
-        // history.push("/admin");
+        history.push("/admin");
       } else if (role === "USER") {
-        // history.push("/index");
+        history.push("/index");
       }
 
     } else {
