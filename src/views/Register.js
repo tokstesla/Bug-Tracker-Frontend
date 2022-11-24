@@ -1,7 +1,6 @@
 import React from "react";
 import useForm from "../components/Forms/useForm";
 import registerValidation from "../utils/formValidation/registerValidation";
-import parsePhoneNumber from "libphonenumber-js";
 
 // reactstrap components
 import {
@@ -19,15 +18,15 @@ import {
   Col,
 } from "reactstrap";
 import API from "utils/API";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const Register = (props) => {
 
-  const history = useHistory()
+  // const history = useHistory()
   const initialValues = {
     firstName: "",
     lastName: "",
-    phone: "",
+    phoneNumber: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -39,13 +38,10 @@ const Register = (props) => {
     registerValidation
   );
 
-  function submit() {
-    let dbPhone = parsePhoneNumber(values.phone, "US").number;
-    values.phone = dbPhone;
 
-    //user authority defaults to developer
-    API.addUser({ ...values, userAuth: "developer" });
-    history.push("/login");
+  function submit() {
+    API.addUser({ ...values });
+    // history.push("/admin/index");
   }
 
   return (
@@ -123,9 +119,9 @@ const Register = (props) => {
                     <Input
                       id="phone"
                       placeholder="Phone Number"
-                      name="phone"
-                      type="phone"
-                      value={values.phone}
+                      name="phoneNumber"
+                      type="text"
+                      value={values.phoneNumber}
                       onChange={handleChange}
                     />
                   </InputGroup>

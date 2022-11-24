@@ -151,14 +151,13 @@ const API = {
       },
     });
   },
-  login: function (userInfo) {
-    return fetch("/api/login", {
+  login: async function (userInfo) {
+    return await fetch("/api/auth/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(userInfo)
     });
   },
   getAvailableUsers: function (projectId, abortController) {
@@ -222,7 +221,8 @@ const API = {
     });
   },
   addUser: function (userData) {
-    return fetch(`/api/users`, {
+    console.log(userData)
+    return fetch(`/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

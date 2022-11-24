@@ -1,4 +1,4 @@
-import API from "../API";
+// import API from "../API";
 import { isValidPhoneNumber } from "libphonenumber-js";
 // import parsePhoneNumber from "libphonenumber-js";
 
@@ -14,12 +14,12 @@ export default async function registerValidation(values) {
     errors.lastName = "Last name is required";
   }
 
-  //phone validation
+  //phoneNumber validation
   if (values.hasOwnProperty("phone")) {
-    if (!values.phone) {
-      errors.phone = "Phone number is required";
-    } else if (!isValidPhoneNumber(values.phone, "US")) {
-      errors.phone = "Please enter valid phone number";
+    if (!values.phoneNumber) {
+      errors.phoneNumber = "Phone number is required";
+    } else if (!isValidPhoneNumber(values.phoneNumber, "NG")) {
+      errors.phoneNumber = "Please enter valid phone number";
     }
   }
 
@@ -29,17 +29,19 @@ export default async function registerValidation(values) {
       errors.email = "Email address is required";
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
       errors.email = "Email address is invalid";
-    } else {
-      try {
-        const res = await API.lookupUserByEmail({ email: values.email });
-
-        if (res.length > 0) {
-          errors.email = "Email already exists";
-        }
-      } catch (err) {
-        console.log(err, "Error looking up email in database");
-      }
     }
+
+    // else {
+    //   try {
+    //     const res = await API.lookupUserByEmail({ email: values.email });
+
+    //     if (res.length > 0) {
+    //       errors.email = "Email already exists";
+    //     }
+    //   } catch (err) {
+    //     console.log(err, "Error looking up email in database");
+    //   }
+    // }
   }
 
   // Password validation

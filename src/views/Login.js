@@ -32,30 +32,34 @@ const Login = (props) => {
   );
 
   async function submit() {
+    // props._test()
     const response = await API.login(values);
+    const data = await response.json()
 
-    if (response.ok) {
-      // const { token, auth } = await response.json();
-      const { token, auth } = await response.json();
+    console.log(data)
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("auth", auth);
 
-      props.setAuthLevel(auth);
-      props.setAuth(true);
+    // if (response.ok) {
+    //   const { accessToken } = await response.json();
+    //   const auth = ''
 
-      if (auth === "admin") {
-        props.history.push("/admin");
-      } else if (auth === "developer" || auth === "project manager") {
-        console.log("here");
-        props.history.push("/index");
-      }
+    //   localStorage.setItem("auth-token", accessToken);
 
-      values.email = "";
-      values.password = "";
-    } else {
-      alert("Invalid login");
-    }
+    //   props.setAuthLevel(auth);
+    //   props.setAuth(true);
+
+    //   if (auth === "admin") {
+    //     props.history.push("/admin");
+    //   } else if (auth === "developer" || auth === "project manager") {
+    //     console.log("here");
+    //     props.history.push("/index");
+    //   }
+
+    //   values.email = "";
+    //   values.password = "";
+    // } else {
+    //   alert("Invalid login");
+    // }
   }
 
   return (
