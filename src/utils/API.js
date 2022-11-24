@@ -1,6 +1,11 @@
 import axios from "axios";
 
 const API = {
+  getPayload: () => {
+    const token = localStorage.getItem('auth-token')
+    const { role, user_id } = JSON.parse(atob(token.split(".")[1]));
+    return { role, user_id }
+  },
   // Gets all projects
   getProjects: function () {
     return fetch("/api/projects", {
@@ -220,9 +225,8 @@ const API = {
       },
     });
   },
-  addUser: function (userData) {
-    console.log(userData)
-    return fetch(`/api/auth/signup`, {
+  addUser: async function (userData) {
+    return await fetch(`/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

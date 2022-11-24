@@ -10,8 +10,6 @@ import Logo from 'assets/img/brand/white.png'
 
 // import { useAuth } from "../contexts/AuthContext";
 import routes from "routes.js";
-import Login from "views/Login";
-import Register from "views/Register";
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);

@@ -18,11 +18,11 @@ import {
   Col,
 } from "reactstrap";
 import API from "utils/API";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Register = (props) => {
+  const history = useHistory()
 
-  // const history = useHistory()
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -39,9 +39,14 @@ const Register = (props) => {
   );
 
 
-  function submit() {
-    API.addUser({ ...values });
-    // history.push("/admin/index");
+  async function submit() {
+    try {
+      const response = await API.addUser(values);
+      history.push("/auth/login");
+
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   return (

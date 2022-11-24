@@ -7,10 +7,10 @@ import './index.css'
 import Register from "views/Register";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authLevel, setAuthLevel] = useState("");
+  const [authStatus, setAuthStatus] = useState({});
 
-  localStorage.setItem('auth-token', '123456') //REMOVE THIS FOR  AUTHORIZATION
   let token = localStorage.getItem("auth-token");
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/auth/login">
-          <Login />
+          <Login setAuth={setAuth} setAuthStatus={setAuthStatus} />
         </Route>
 
         <Route path="/auth/register">
@@ -38,11 +38,11 @@ const App = () => {
           path="/"
           render={(props) =>
             <MainLayout
-                {...props}
-                setAuth={setAuth}
-                authLevel={authLevel}
-                setAuthLevel={setAuthLevel}
-              />
+              {...props}
+              setAuth={setAuth}
+              authLevel={authLevel}
+              setAuthLevel={setAuthLevel}
+            />
             // isAuthenticated && token !== null ? (
             //   <MainLayout
             //     {...props}

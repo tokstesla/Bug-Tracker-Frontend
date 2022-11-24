@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "../components/Forms/useForm";
 import validate from "../utils/formValidation/loginValidation";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -20,6 +20,7 @@ import {
 } from "reactstrap";
 
 const Login = (props) => {
+  const history = useHistory();
   const initialLoginValues = {
     email: "",
     password: "",
@@ -32,34 +33,24 @@ const Login = (props) => {
   );
 
   async function submit() {
-    // props._test()
     const response = await API.login(values);
-    const data = await response.json()
+    const { accessToken } = await response.json();
 
-    console.log(data)
+    if (response.ok) {
+      localStorage.setItem("auth-token", accessToken);
+      const { role, user_id } = API.getPayload();
+      props.setAuth(true);
+      props.setAuthStatus({ role, user_id })
 
+      if (role === "ADMIN") {
+        // history.push("/admin");
+      } else if (role === "USER") {
+        // history.push("/index");
+      }
 
-    // if (response.ok) {
-    //   const { accessToken } = await response.json();
-    //   const auth = ''
-
-    //   localStorage.setItem("auth-token", accessToken);
-
-    //   props.setAuthLevel(auth);
-    //   props.setAuth(true);
-
-    //   if (auth === "admin") {
-    //     props.history.push("/admin");
-    //   } else if (auth === "developer" || auth === "project manager") {
-    //     console.log("here");
-    //     props.history.push("/index");
-    //   }
-
-    //   values.email = "";
-    //   values.password = "";
-    // } else {
-    //   alert("Invalid login");
-    // }
+    } else {
+      console.log('Invalid login')
+    }
   }
 
   return (
