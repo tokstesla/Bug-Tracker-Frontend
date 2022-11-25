@@ -44,9 +44,9 @@ const Login = (props) => {
       props.setAuthLevel(role)
 
       if (role === "ADMIN") {
-        history.push("/admin");
+        history.push("/admin/index");
       } else if (role === "USER") {
-        history.push("/index");
+        history.push("/general/index");
       }
 
     } else {

@@ -57,10 +57,10 @@ const ProjectTicketsTable = ({
   }, [projectTickets, currentTicketPage]);
 
   const deleteTicket = async (ticketId) => {
-    await API.deleteTicket(projectId, ticketId);
+    // await API.deleteTicket(projectId, ticketId);
 
-    const projectTicketsRes = await API.getProjectTickets(projectId);
-    setProjectTickets(projectTicketsRes);
+    // const projectTicketsRes = await API.getProjectTickets(projectId);
+    setProjectTickets([]);
   };
 
   return (

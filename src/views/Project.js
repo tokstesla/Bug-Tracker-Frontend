@@ -13,7 +13,6 @@ import ProjectTicketsTable from "../components/Tables/ProjectTicketsTable";
 import API from "../utils/API";
 
 const Project = (props) => {
-  console.log('value of user role', props.authLevel)
   const projectId = useParams().id;
 
   const [projectData, setProjectData] = useState({});
@@ -37,12 +36,12 @@ const Project = (props) => {
 
     async function fetchTeam() {
       try {
-        const projectTeamRes = await API.getProjectUsers(
-          projectId,
-          abortController
-        );
+        // const projectTeamRes = await API.getProjectUsers(
+        //   projectId,
+        //   abortController
+        // );
 
-        setProjectTeam(projectTeamRes);
+        setProjectTeam([]);
       } catch (err) {
         if (!abortController.signal.aborted) {
           console.log("Error fetching project team data", err);
@@ -63,14 +62,14 @@ const Project = (props) => {
 
     async function fetchData() {
       try {
-        const projectDataRes = await API.getProject(projectId, abortController);
-        setProjectData(projectDataRes.data);
+        // const projectDataRes = await API.getProject(projectId, abortController);
+        setProjectData({});
 
-        const projectTicketsRes = await API.getProjectTickets(
-          projectId,
-          abortController
-        );
-        setProjectTickets(projectTicketsRes);
+        // const projectTicketsRes = await API.getProjectTickets(
+        //   projectId,
+        //   abortController
+        // );
+        setProjectTickets([]);
       } catch (err) {
         if (!abortController.signal.aborted) {
           console.log(`Error requesting project data: ${err}`);
@@ -90,24 +89,24 @@ const Project = (props) => {
     async function fetchTicket() {
       try {
         if (selectedTicketId) {
-          const ticket = await API.getTicket(
-            projectId,
-            selectedTicketId,
-            abortController
-          );
-          setSelectedTicket(ticket);
-          const comments = await API.getTicketComments(
-            selectedTicketId,
-            abortController
-          );
-          setComments(comments);
+          // const ticket = await API.getTicket(
+          //   projectId,
+          //   selectedTicketId,
+          //   abortController
+          // );
+          setSelectedTicket({});
+          // const comments = await API.getTicketComments(
+          //   selectedTicketId,
+          //   abortController
+          // );
+          setComments([]);
 
           //assigned Devs
-          const assignedDevs = await API.getDevAssignments(
-            selectedTicketId,
-            abortController
-          );
-          setAssignedDevs(assignedDevs);
+          // const assignedDevs = await API.getDevAssignments(
+          //   selectedTicketId,
+          //   abortController
+          // );
+          setAssignedDevs([]);
         }
       } catch (err) {
         if (!abortController.signal.aborted) {

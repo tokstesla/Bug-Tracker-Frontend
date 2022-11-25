@@ -52,10 +52,7 @@ const AdminSidebar = (props) => {
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
     //TODO: figure out more elegant/secure way to manage admin persistence vs local storage
-    if (
-      props.authLevel === "admin" ||
-      localStorage.getItem("auth") === "admin"
-    ) {
+    if (props.authLevel === "ADMIN") {
       return routes.map((prop, key) => {
         if (prop.layout === "admin" && prop.display) {
           return (

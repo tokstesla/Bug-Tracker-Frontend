@@ -31,9 +31,9 @@ export default function SelectedTicket({
 
   const deleteComment = async (commentId) => {
     try {
-      await API.deleteComment(selectedTicket.id, commentId);
+      // await API.deleteComment(selectedTicket.id, commentId);
 
-      const comments = await API.getTicketComments(selectedTicket.id);
+      // const comments = await API.getTicketComments(selectedTicket.id);
       setComments(comments);
     } catch (err) {
       console.log("Error deleting comment", err);
@@ -48,10 +48,10 @@ export default function SelectedTicket({
     setIsSubmitting(true);
 
     try {
-      await API.createComment(selectedTicket.id, { comment });
+      // await API.createComment(selectedTicket.id, { comment });
 
-      const comments = await API.getTicketComments(selectedTicket.id);
-      setComments(comments);
+      // const comments = await API.getTicketComments(selectedTicket.id);
+      setComments([]);
     } catch (err) {
       console.log("Error posting comment", err);
     }

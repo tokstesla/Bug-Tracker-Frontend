@@ -12,7 +12,6 @@ import Logo from 'assets/img/brand/white.png'
 import routes from "routes.js";
 
 const Admin = (props) => {
-  console.log('value of all props', props)
   const mainContent = React.useRef(null);
   const location = useLocation();
 

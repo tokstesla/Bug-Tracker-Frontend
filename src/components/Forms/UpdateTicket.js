@@ -51,17 +51,17 @@ const UpdateTicket = (props) => {
 
     const { assignees } = values;
     try {
-      await API.updateTicket(projectId, props.ticketData.id, values);
-      await API.removeAllDevAssignments(props.ticketData.id);
+      // await API.updateTicket(projectId, props.ticketData.id, values);
+      // await API.removeAllDevAssignments(props.ticketData.id);
 
       for (let i = 0; i < assignees.length; i++) {
         const devId = { devId: assignees[i] };
-        await API.createDevAssignment(props.ticketData.id, devId);
+        // await API.createDevAssignment(props.ticketData.id, devId);
       }
 
-      const projectTicketsRes = await API.getProjectTickets(projectId);
+      // const projectTicketsRes = await API.getProjectTickets(projectId);
 
-      props.setProjectTickets(projectTicketsRes);
+      props.setProjectTickets([]);
 
       values.title = "";
       values.description = "";

@@ -18,6 +18,7 @@ import TicketsPieChart from "components/Charts/TicketsPieChart";
 import API from "../utils/API";
 
 const Index = (props) => {
+  console.log('value of user role', props.authLevel)
   const [userTickets, setUserTickets] = useState([]);
 
   if (window.Chart) {

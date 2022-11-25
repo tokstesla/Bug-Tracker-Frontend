@@ -12,7 +12,7 @@ const Footer = () => {
             © {new Date().getFullYear()}{" "}
             <a
               className="font-weight-bold ml-1"
-              href="https://github.com/tokstesla/Bug-Tracker"
+              href="https://github.com/tokstesla/"
               rel="noopener noreferrer"
               target="_blank"
             >

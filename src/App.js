@@ -6,7 +6,7 @@ import Register from "views/Register";
 import MainLayout from "layouts/Main";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [authLevel, setAuthLevel] = useState("");
   const [authPayload, setAuthPayload] = useState({});
 
@@ -14,7 +14,6 @@ const App = () => {
 
   useEffect(() => {
     if (token === null) setIsAuthenticated(false);
-    else setIsAuthenticated(true);
   }, [token]);
 
   const setAuth = x => setIsAuthenticated(x)
@@ -25,7 +24,8 @@ const App = () => {
         <Route path="/auth/register"><Register /></Route>
         <Route path="/auth/login"><Login setAuth={setAuth} setAuthPayload={setAuthPayload} setAuthLevel={setAuthLevel} /></Route>
 
-        <Route path="/" render={(props) => <MainLayout {...props} authLevel={authLevel} authPayload={authPayload} isAuthenticated={isAuthenticated} />}
+        <Route path="/" render={props => token !== null && isAuthenticated ? <MainLayout {...props} authLevel={authLevel} authPayload={authPayload} setAuth={setAuth} />
+          : <Redirect to="/auth/login" />}
         />
       </Switch>
     </BrowserRouter>

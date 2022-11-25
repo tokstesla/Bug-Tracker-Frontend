@@ -8,7 +8,7 @@ const API = {
   },
   // Gets all projects
   getProjects: function () {
-    return fetch("/api/projects", {
+    return fetch("/api/members/1/projects", {
       headers: {
         token: localStorage.getItem("auth-token"),
       },
@@ -19,7 +19,7 @@ const API = {
     let signal = null;
     if (abortController) signal = abortController.signal;
 
-    return axios.get("/api/projects/" + id, {
+    return axios.get("/api/members/1/projects/" + id, {
       signal,
       headers: {
         token: localStorage.getItem("auth-token"),
@@ -41,12 +41,12 @@ const API = {
     let signal = null;
     if (abortController) signal = abortController.signal;
 
-    return fetch("/api/tickets/" + projectId, { signal }).then((res) =>
+    return fetch("/api/members/1/projects/{pid}/tickets/" + projectId, { signal }).then((res) =>
       res.json()
     );
   },
   createProject: function (projectData) {
-    return fetch("/api/projects", {
+    return fetch("/api/members/1/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const API = {
     }).then((res) => res.json());
   },
   updateProject: function (projectId, projectData) {
-    return fetch(`/api/projects/${projectId}`, {
+    return fetch(`/api/members/1/projects/${projectId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const API = {
     let signal = null;
     if (abortController) signal = abortController.signal;
 
-    return fetch(`/api/tickets/${projectId}/${ticketId}`, { signal }).then(
+    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`, { signal }).then(
       (res) => res.json()
     );
   },
@@ -109,7 +109,7 @@ const API = {
     );
   },
   createTicket: function (projectId, payload) {
-    return fetch(`/api/tickets/${projectId}`, {
+    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const API = {
     }).then((res) => res.json());
   },
   updateTicket: function (projectId, ticketId, payload) {
-    return fetch(`/api/tickets/${projectId}/${ticketId}`, {
+    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +129,7 @@ const API = {
     }).then((res) => res.json());
   },
   deleteTicket: function (projectId, ticketId) {
-    return fetch(`/api/tickets/${projectId}/${ticketId}`, {
+    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -217,7 +217,7 @@ const API = {
     }).then((res) => res.json());
   },
   deleteProject: function (projectId) {
-    return fetch(`/api/projects/${projectId}`, {
+    return fetch(`/api/members/1/projects/${projectId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -238,7 +238,7 @@ const API = {
     let signal = null;
     if (abortController) signal = abortController.signal;
 
-    return fetch("/api/tickets", {
+    return fetch("/api/members/1/projects/{pid}/tickets", {
       signal,
       method: "GET",
       headers: {

@@ -11,9 +11,9 @@ const AddTeamMember = (props) => {
     const abortController = new AbortController();
 
     async function fetchData() {
-      const users = await API.getAvailableUsers(projectId, abortController);
+      // const users = await API.getAvailableUsers(projectId, abortController);
 
-      setDbUsers(users);
+      setDbUsers([]);
     }
 
     fetchData();
@@ -35,13 +35,13 @@ const AddTeamMember = (props) => {
   const submit = async (e) => {
     e.preventDefault();
 
-    selectedUsers.forEach(async (userId) => {
-      await API.addTeamMember(projectId, { userId });
-    });
+    // selectedUsers.forEach(async (userId) => {
+    //   await API.addTeamMember(projectId, { userId });
+    // });
 
-    const projectTeamRes = await API.getProjectUsers(projectId);
+    // const projectTeamRes = await API.getProjectUsers(projectId);
 
-    props.setProjectTeam(projectTeamRes);
+    props.setProjectTeam([]);
 
     props.toggle();
   };

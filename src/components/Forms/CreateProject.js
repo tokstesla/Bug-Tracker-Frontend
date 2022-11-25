@@ -123,7 +123,7 @@ const CreateProject = (props) => {
                 onChange={handleChange}
                 multiple
               >
-                {availableTeamMembers.map((user, key) => {
+                {availableTeamMembers.length > 0 && availableTeamMembers.map((user, key) => {
                   return (
                     <option key={key} value={user.id}>
                       {user.first_name} {user.last_name}

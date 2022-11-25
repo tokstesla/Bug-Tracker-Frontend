@@ -42,16 +42,16 @@ const CreateTicket = (props) => {
 
     const { assignees } = values;
 
-    const { id } = await API.createTicket(projectId, values);
+    // const { id } = await API.createTicket(projectId, values);
 
     for (let i = 0; i < assignees.length; i++) {
       const devId = { devId: assignees[i] };
-      await API.createDevAssignment(id, devId);
+      // await API.createDevAssignment(id, devId);
     }
 
-    const projectTicketsRes = await API.getProjectTickets(projectId);
+    // const projectTicketsRes = await API.getProjectTickets(projectId);
 
-    props.setProjectTickets(projectTicketsRes);
+    props.setProjectTickets([]);
 
     values.title = "";
     values.description = "";

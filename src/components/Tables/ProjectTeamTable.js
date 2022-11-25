@@ -48,10 +48,10 @@ function ProjectTeamTable({
   }, [projectTeam, currentTeamMembersPage]);
 
   const removeTeamMember = async (projectId, userId) => {
-    await API.removeTeamMember(projectId, userId);
+    // await API.removeTeamMember(projectId, userId);
 
-    const projectTeamRes = await API.getProjectUsers(projectId);
-    setProjectTeam(projectTeamRes);
+    // const projectTeamRes = await API.getProjectUsers(projectId);
+    setProjectTeam([]);
   };
 
   return (
