@@ -2,9 +2,13 @@ import axios from "axios";
 
 const API = {
   getPayload: () => {
-    const token = localStorage.getItem('auth-token')
-    const { role, user_id } = JSON.parse(atob(token.split(".")[1]));
-    return { role, user_id }
+    const token = localStorage.getItem("auth-token");
+    try {
+      const { role, user_id } = JSON.parse(atob(token.split(".")[1]));
+      return { role, user_id };
+    } catch (error) {
+      return { role: "", user_id: "" };
+    }
   },
   // Gets all projects
   getProjects: function () {
@@ -41,9 +45,9 @@ const API = {
     let signal = null;
     if (abortController) signal = abortController.signal;
 
-    return fetch("/api/members/1/projects/{pid}/tickets/" + projectId, { signal }).then((res) =>
-      res.json()
-    );
+    return fetch("/api/members/1/projects/{pid}/tickets/" + projectId, {
+      signal,
+    }).then((res) => res.json());
   },
   createProject: function (projectData) {
     return fetch("/api/members/1/projects", {
@@ -84,9 +88,10 @@ const API = {
     let signal = null;
     if (abortController) signal = abortController.signal;
 
-    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`, { signal }).then(
-      (res) => res.json()
-    );
+    return fetch(
+      `/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`,
+      { signal }
+    ).then((res) => res.json());
   },
   getTicketComments: function (ticketId, abortController) {
     let signal = null;
@@ -119,23 +124,29 @@ const API = {
     }).then((res) => res.json());
   },
   updateTicket: function (projectId, ticketId, payload) {
-    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        token: localStorage.getItem("auth-token"),
-      },
-      body: JSON.stringify(payload),
-    }).then((res) => res.json());
+    return fetch(
+      `/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("auth-token"),
+        },
+        body: JSON.stringify(payload),
+      }
+    ).then((res) => res.json());
   },
   deleteTicket: function (projectId, ticketId) {
-    return fetch(`/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        token: localStorage.getItem("auth-token"),
-      },
-    });
+    return fetch(
+      `/api/members/1/projects/{pid}/tickets/${projectId}/${ticketId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("auth-token"),
+        },
+      }
+    );
   },
   createDevAssignment: function (ticketId, devId) {
     return fetch(`/api/devassignments/${ticketId}`, {
@@ -162,7 +173,7 @@ const API = {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInfo)
+      body: JSON.stringify(userInfo),
     });
   },
   getAvailableUsers: function (projectId, abortController) {

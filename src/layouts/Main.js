@@ -6,7 +6,7 @@ import { Container } from "reactstrap";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import UniversalSidebar from "components/Sidebar/UniversalSidebar.js";
-import Logo from 'assets/img/brand/white.png'
+import Logo from "assets/img/brand/white.png";
 
 // import { useAuth } from "../contexts/AuthContext";
 import routes from "routes.js";
@@ -24,14 +24,16 @@ const Admin = (props) => {
   }, [location]);
 
   function getRoutes(routes) {
+    console.log("value of auth level", props.authLevel);
     return routes.map((prop, key) => {
-      if (prop.layout === "admin") {
-        return (<Route
-          path={prop.root + prop.path}
-          render={() => <prop.component {...props} />}
-          key={key}
-        />)
-
+      if (prop.layout === "admin" && props.authLevel === "ADMIN") {
+        return (
+          <Route
+            path={prop.root + prop.path}
+            render={() => <prop.component {...props} />}
+            key={key}
+          />
+        );
       } else if (prop.layout === "general") {
         return (
           <Route
@@ -42,7 +44,7 @@ const Admin = (props) => {
         );
       }
     });
-  };
+  }
 
   const getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
@@ -50,7 +52,7 @@ const Admin = (props) => {
         if (
           props.location.pathname.indexOf(
             routes[i].layout +
-            routes[i].path.slice(0, routes[i].path.indexOf(":"))
+              routes[i].path.slice(0, routes[i].path.indexOf(":"))
           ) !== -1
         ) {
           return routes[i].name;
@@ -83,9 +85,9 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to="/admin/index" />
-        </Switch>
 
+          <Redirect from="*" to="/index" />
+        </Switch>
       </div>
       <Container fluid>
         <AdminFooter />

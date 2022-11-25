@@ -50,9 +50,9 @@ const Administration = () => {
 
     const fetchOrganization = async () => {
       try {
-        const organization = await API.getUsers(abortController);
+        // const organization = await API.getUsers(abortController);
 
-        setAllDevs(organization);
+        setAllDevs([]);
       } catch (err) {
         if (!DOMException) {
           console.log(err);
@@ -70,7 +70,7 @@ const Administration = () => {
   const removeUser = async (id) => {
     if (window.confirm("Are you sure you want to remove user?")) {
       try {
-        await API.removeUser(id);
+        // await API.removeUser(id);
 
         toast.error("User information updated", {
           position: "top-right",
@@ -82,8 +82,8 @@ const Administration = () => {
           progress: undefined,
         });
 
-        const organization = await API.getUsers();
-        setAllDevs(organization);
+        // const organization = await API.getUsers();
+        setAllDevs([]);
       } catch (err) {
         console.log("User deletion failed ");
       }
@@ -114,7 +114,7 @@ const Administration = () => {
     };
 
     try {
-      await API.updateUser(selectedDev.id, formattedValues);
+      // await API.updateUser(selectedDev.id, formattedValues);
 
       toast.success("User information updated", {
         position: "top-right",
@@ -126,8 +126,8 @@ const Administration = () => {
         progress: undefined,
       });
 
-      const organization = await API.getUsers();
-      setAllDevs(organization);
+      // const organization = await API.getUsers();
+      setAllDevs([]);
       setSelectedDev(selectedDev);
     } catch (err) {
       console.log(err);
@@ -143,7 +143,7 @@ const Administration = () => {
             <Card className="shadow">
               <CardHeader className="mb-2">Organization</CardHeader>
               <ListGroup className="m-4">
-                {allDevs.map((dev, key) => {
+                {allDevs.length > 0 && allDevs.map((dev, key) => {
                   return (
                     <ListGroupItem
                       className="listItem"

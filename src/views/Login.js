@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "../components/Forms/useForm";
 import validate from "../utils/formValidation/loginValidation";
 import API from "../utils/API";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -38,15 +38,13 @@ const Login = (props) => {
 
     if (response.ok) {
       localStorage.setItem("auth-token", accessToken);
-      const { role, user_id } = API.getPayload();
+      const { role } = API.getPayload();
       props.setAuth(true);
-      props.setAuthPayload({ role, user_id })
-      props.setAuthLevel(role)
 
       if (role === "ADMIN") {
         history.push("/admin/index");
       } else if (role === "USER") {
-        history.push("/general/index");
+        history.push("/index");
       }
 
     } else {
@@ -132,13 +130,13 @@ const Login = (props) => {
           </Card>
           <Row className="mt-3">
             <Col xs="6">
-              <a
+              {/* <a
                 className="text-light"
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
                 <small>Forgot password?</small>
-              </a>
+              </a> */}
             </Col>
             <Col className="text-right" xs="6">
               <Link to="/auth/register">
